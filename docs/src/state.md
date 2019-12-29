@@ -6,13 +6,17 @@ out-of-scope for Danake itself, but for instance, a service provider
 could periodically issue a fixed number of credits to each user, or
 allow users to purchase credits using Zcash, etc.  
 
-A user's credit balance is stored in a *wallet* credential.  Users can
-transfer small portions of their wallet balance to *tokens*, which can
-be used to spend credits with the service provider until the token
-balance is depleted.  Both wallets and tokens have nullifier attributes
-so that they can only be used once; each presentation of a wallet or
-token is coupled with a (blinded) issuance request for a new wallet or
-token with an updated balance and a new nullifier.
+A user's credit balance is stored in a *wallet* credential with
+attributes \\((w,n_w)\\), where \\(w\\) is the wallet balance and
+\\(n_w\\) is the wallet nullifier.  Users can transfer small portions of
+their wallet balance to *tokens*, which can be used to spend credits
+with the service provider until the token balance is depleted.  A token
+is a credential with attributes \\((t,n_t)\\), where \\(t\\) is the
+token balance and \\(n_t\\) is the token nullifier.  Both wallets and
+tokens have nullifier attributes so that they can only be used once;
+each presentation of a wallet or token is coupled with a (blinded)
+issuance request for a new wallet or token with an updated balance and a
+new nullifier.
 
 While the simplest mechanism would be for the user to spend credits from
 the wallet credential directly, using intermediate tokens has a number
