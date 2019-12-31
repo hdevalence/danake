@@ -3,7 +3,6 @@
 [Danake](./danake.md)
 - [Design Goals](./design_goals.md)
 - [CMZ13 Credentials](./cmz13.md)
-  - [Intuition](./cmz13/intuition.md)
   - [Issuance](./cmz13/issuance.md)
   - [Verification](./cmz13/verification.md)
 - [Extensions to CMZ13](./extensions.md)
