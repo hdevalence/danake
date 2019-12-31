@@ -18,7 +18,7 @@
   - [Token Purchase](./state/token_purchase.md)
   - [Spending Tokens](./state/token_spending.md)
   - [Epoch Rollover](./state/epoch_rollover.md)
-- [Unresolved Questions](./questions.md)
 - [Implementation](./implementation.md)
 - [Performance](./performance.md)
+- [Unresolved Questions](./questions.md)
   
