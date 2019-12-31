@@ -1,6 +1,7 @@
 # Summary
 
 [Danake](./danake.md)
+- [Design Goals](./design_goals.md)
 - [CMZ13 Credentials](./cmz13.md)
   - [Intuition](./cmz13/intuition.md)
   - [Issuance](./cmz13/issuance.md)
@@ -9,7 +10,6 @@
   - [Proof Chaining](./extensions/chain.md)
   - [Affine Credentials](./extensions/affine.md)
   - [Credential Epochs](./extensions/epochs.md)
-- [Design Goals](./design_goals.md)
 - [The Danake State Machine](./state.md)
   - [Wallet Issuance](./state/wallet_issuance.md)
   - [Wallet Topup](./state/wallet_topup.md)
