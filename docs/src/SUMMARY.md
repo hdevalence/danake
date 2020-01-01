@@ -9,7 +9,7 @@
   - [Issuance](./cmz13/issuance.md)
   - [Verification](./cmz13/verification.md)
 - [Extensions to CMZ13](./extensions.md)
-  - [Proof Chaining](./extensions/chain.md)
+  - [Chaining Proofs](./extensions/chain.md)
   - [Affine Credentials](./extensions/affine.md)
   - [Credential Epochs](./extensions/epochs.md)
 - [The Danake State Machine](./state.md)
