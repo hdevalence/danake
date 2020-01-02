@@ -11,7 +11,7 @@
 - [Extensions to CMZ13](./extensions.md)
   - [Chaining Proofs](./extensions/chain.md)
   - [Nullifiers](./extensions/nullifiers.md)
-  - [(WIP) Credential Epochs](./extensions/epochs.md)
+  - [Credential Epochs](./extensions/epochs.md)
 - [The Danake State Machine](./state.md)
   - [(WIP) Wallet Issuance](./state/wallet_issuance.md)
   - [(WIP) Wallet Topup](./state/wallet_topup.md)
