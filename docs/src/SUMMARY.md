@@ -4,7 +4,7 @@
 - [(WIP) Design Goals](./design_goals.md)
 - [CMZ13 Credentials](./cmz13.md)
   - [Notation](./cmz13/notation.md)
-  - [(WIP) MAC-GGM](./cmz13/macggm.md)
+  - [MAC-GGM](./cmz13/macggm.md)
   - [(WIP) Key Generation](./cmz13/keygen.md)
   - [(WIP) Issuance](./cmz13/issuance.md)
   - [(WIP) Verification](./cmz13/verification.md)
