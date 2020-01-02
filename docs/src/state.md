@@ -1,11 +1,5 @@
 # The Danake State Machine
 
-Danake allows a service provider to issue credits to users based on some
-application-dependent policy.  The exact policy is considered
-out-of-scope for Danake itself, but for instance, a service provider
-could periodically issue a fixed number of credits to each user, or
-allow users to purchase credits using Zcash, etc.  
-
 A user's credit balance is stored in a *wallet* credential with
 attributes \\((w,n_w)\\), where \\(w\\) is the wallet balance and
 \\(n_w\\) is the wallet nullifier.  Clients can transfer small portions of

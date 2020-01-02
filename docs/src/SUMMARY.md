@@ -1,7 +1,7 @@
 # Summary
 
 [Danake](./danake.md)
-- [(WIP) Design Goals](./design_goals.md)
+- [Design Goals](./design_goals.md)
 - [CMZ13 Credentials](./cmz13.md)
   - [Notation](./cmz13/notation.md)
   - [MAC-GGM](./cmz13/macggm.md)
