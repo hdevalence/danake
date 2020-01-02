@@ -15,11 +15,14 @@ scalars and a vector of group elements, respectively).
 The inner product of two vectors is denoted by \\(\langle-,-\rangle\\).
 Notice that with this notation, a multiscalar multiplication is written
 as \\(\langle\mathbf a, \mathbf G\rangle\\), and all the usual
-inner-product identities can be used to rearrange terms.
+inner-product identities can be used to rearrange terms.  The
+concatenation of two vectors is written \\( \mathbf x || \mathbf y \\).
 
 Pedersen commitments are written as
 \\[
-    \operatorname{Com}(v) = \operatorname{Com}(v, {\widetilde{v}}) = v \cdot B + {\widetilde{v}} \cdot {\widetilde{B}},
+    \operatorname{Com}(v) 
+  = \operatorname{Com}(v, {\widetilde{v}})
+  = v \cdot B + {\widetilde{v}} \cdot {\widetilde{B}},
 \\]
 where \\(B\\) and \\(\widetilde B\\) are the Pedersen generators used for the
 values and blinding factors, respectively.  The blinding factor for the
@@ -27,4 +30,7 @@ value \\(v\\) is denoted by \\(\widetilde v\\), so that it is clear which
 blinding factor corresponds to which value, and write
 \\(\operatorname{Com}(v)\\) instead of \\(\operatorname{Com}(v,
 \widetilde v)\\) for brevity.
+
+The notation \\( P \xleftarrow{\\$} \\mathbb G\\) means that \\(P\\)
+should be selected uniformly at random from the set \\(\mathbb G\\).
 
