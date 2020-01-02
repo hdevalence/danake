@@ -10,7 +10,7 @@
   - [(WIP) Verification](./cmz13/verification.md)
 - [Extensions to CMZ13](./extensions.md)
   - [Chaining Proofs](./extensions/chain.md)
-  - [(WIP) Affine Credentials](./extensions/affine.md)
+  - [Nullifiers](./extensions/nullifiers.md)
   - [(WIP) Credential Epochs](./extensions/epochs.md)
 - [The Danake State Machine](./state.md)
   - [(WIP) Wallet Issuance](./state/wallet_issuance.md)
