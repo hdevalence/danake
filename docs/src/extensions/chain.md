@@ -1,8 +1,8 @@
 # Chaining Proofs
 
 Various parts of the CMZ13 construction make use of zero-knowledge
-proofs to have, e.g., the issuer prove to the user that the credential
-was issued with respect to the expected parameters, or the user prove to
+proofs to have, e.g., the issuer prove to the client that the credential
+was issued with respect to the expected parameters, or the client prove to
 the issuer that their blinded attributes were well-formed encryptions.
 
 This is a specific instance of a more general paradigm: the use of

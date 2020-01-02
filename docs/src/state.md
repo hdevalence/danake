@@ -8,7 +8,7 @@ allow users to purchase credits using Zcash, etc.
 
 A user's credit balance is stored in a *wallet* credential with
 attributes \\((w,n_w)\\), where \\(w\\) is the wallet balance and
-\\(n_w\\) is the wallet nullifier.  Users can transfer small portions of
+\\(n_w\\) is the wallet nullifier.  Clients can transfer small portions of
 their wallet balance to *tokens*, which can be used to spend credits
 with the service provider until the token balance is depleted.  A token
 is a credential with attributes \\((t,n_t)\\), where \\(t\\) is the
@@ -18,13 +18,13 @@ each presentation of a wallet or token is coupled with a (blinded)
 issuance request for a new wallet or token with an updated balance and a
 new nullifier.
 
-While the simplest mechanism would be for the user to spend credits from
+While the simplest mechanism would be for the client to spend credits from
 the wallet credential directly, using intermediate tokens has a number
 of advantages:
 
 1.  Because presentation is sequential (each presentation reveals a
 nullifier and requests issuance of a new credential for future use),
-using intermediate tokens allows a user to make multiple presentations
+using intermediate tokens allows a client to make multiple presentations
 in parallel, rather than waiting for a complete server round-trip before
 spending more credits.
 
