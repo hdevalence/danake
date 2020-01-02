@@ -1,6 +1,6 @@
 # Summary
 
-[(WIP) Danake](./danake.md)
+[Danake](./danake.md)
 - [(WIP) Design Goals](./design_goals.md)
 - [CMZ13 Credentials](./cmz13.md)
   - [Notation](./cmz13/notation.md)

@@ -6,5 +6,8 @@ performance.  It is named in reference to the [danake], a silver coin of
 the Persian empire commonly placed in the mouth of the deceased to pay
 for passage into the underworld.
 
+Danake is a work-in-progress, and this document will continue to evolve
+over time.
+
 [danake]: https://en.wikipedia.org/wiki/Danake
 
