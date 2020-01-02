@@ -7,7 +7,9 @@ the Persian empire commonly placed in the mouth of the deceased to pay
 for passage into the underworld.
 
 Danake is a work-in-progress, and this document will continue to evolve
-over time.
+over time.  The table of contents is visible on the left or via the menu
+button at top-left.  This document also supports full-text search,
+available by pressing `s`.
 
 [danake]: https://en.wikipedia.org/wiki/Danake
 
