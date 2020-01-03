@@ -31,5 +31,11 @@ Krzysztof Pietrzak, and Daniel Wichs.  It is defined as follows:
   \\(Q = \langle \mathbf x, (1) || \mathbf m \rangle \cdot P\\),
   otherwise reject.
 
+Notice that although the tag \\( (P,Q) \\) witnesses the integrity of
+the message \\(\mathbf m\\), the tag itself is malleable: given \\( r
+\in \mathbb F\_p^\times\\), \\( (rP, rQ) \\) also satisfies the
+verification equation.  When used as part of an anonymous credential,
+this will be used to re-randomize the tag.
+
 [mac_revisited]: https://eprint.iacr.org/2012/059
 
