@@ -1,5 +1,3 @@
-# Danake
-
 Danake is a lightweight micropayment system which allows anonymous
 services to bill for resource usage without compromising privacy or
 performance.  It is named in reference to the [danake], a silver coin of
