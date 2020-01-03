@@ -2,8 +2,8 @@
 
 [Danake](./danake.md)
 - [Design Goals](./design_goals.md)
+- [Notation](./notation.md)
 - [CMZ13 Credentials](./cmz13.md)
-  - [Notation](./cmz13/notation.md)
   - [MAC-GGM](./cmz13/macggm.md)
   - [Key Generation](./cmz13/keygen.md)
   - [(WIP) Issuance](./cmz13/issuance.md)
