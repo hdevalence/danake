@@ -63,9 +63,9 @@ Issuance is an online protocol with the following steps.
    considering the contributions from cleartext attributes \\(Q\_c\\)
    and blinded attributes \\(Q\_b\\) separately:
     1. The issuer selects
-       \\( p \xleftarrow{\\$} \mathbb F\_p \\)
+       \\( b \xleftarrow{\\$} \mathbb F\_p \\)
        and computes
-       \\( P \gets pB \\).
+       \\( P \gets bB \\).
     2. The issuer computes[^2] a partial MAC on the cleartext attributes
        \\[
        %Q\_c \gets \langle 
@@ -91,7 +91,7 @@ Issuance is an online protocol with the following steps.
        \operatorname{Enc}\_D(Q\_b)
        \gets
        \sum\_{i \in \mathcal H}
-         p x\_i \operatorname{Enc}\_D(m\_i B).
+         b x\_i \operatorname{Enc}\_D(m\_i B).
        \\]
     5. The issuer computes
        \\[
@@ -100,25 +100,49 @@ Issuance is an online protocol with the following steps.
        \operatorname{Enc}\_D(Q\_c) +
        \operatorname{Enc}\_D(Q\_b).
        \\]
-    6. The issuer proves that it performed its steps correctly:
+    6. The issuer proves that it performed its steps correctly and issued a 
+       credential with respect to the correct issuance parameters:
        \\[
        \begin{aligned}
        \pi &\gets \operatorname{PK}\\{ \\\\
            &\mathtt{CorrectBlindIssuance}, \\\\
-           &(), \\\\
-           &(), \\\\
-           &() \\; : \\\\
-           & \ldots \\\\
+           &(
+             b, r, \mathbf x, \widetilde x\_0, \mathbf t
+           ), \\\\
+           &(
+             P,
+             D, 
+             (\operatorname{Enc}\_D(m\_i B))\_{i \in \mathcal H},
+             \operatorname{Enc}\_D(Q),
+             \mathbf T
+           ), \\\\
+           &(\operatorname{Com}(x\_0), \mathbf X, B, \widetilde B) \\; : \\\\
+           & \operatorname{Com}(x\_0) = x\_0 B + \widetilde x\_0 \widetilde B,  \\\\
+           & X\_i = x\_i \widetilde B \quad i = 1, \ldots, n, \\\\
+           & P = bB, \\\\
+           & T\_i = bX\_i, T\_i = t\_i \widetilde B \quad \forall i \in \mathcal H, \\\\
+           & \operatorname{Enc}\_D(Q) = 
+           \Big(
+               rB,
+               \Big(
+               x\_0 + \sum\_{i \not\in \mathcal H} x\_i m\_i
+               \Big) P + rD
+           \Big) + 
+           \sum\_{i \in \mathcal H} \operatorname{Enc}\_D(m\_i B)
+             \\\\
        \\}
        \end{aligned}
        \\]
-    7. The issuer sends \\(P\\), \\(\operatorname{Enc}\_D(Q)\\), and
+       where \\(t\_i = bx\_i\\), \\(T\_i = t\_i\widetilde B\\) are auxiliary
+       variables used to avoid writing statements involving secret products.
+    7. The issuer sends \\(P\\), \\(\operatorname{Enc}\_D(Q)\\), \\(T\_i\\), and
        \\(\pi\\) to the client.
     
 3. **Client**. The client verifies the issuer's proof using the expected
 issuance parameters and decrypts \\(\operatorname{Enc}\_D(Q)\\) to
 obtain the tag \\((P,Q)\\).
 
+FIXME: the notation in this description is hard to follow.
 
 [^1]: Because the client knows their own ephemeral secret, assuming an
 optimized fixed-base scalar multiplication is available, this can be
