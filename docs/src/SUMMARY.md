@@ -7,7 +7,7 @@
   - [MAC-GGM](./cmz13/macggm.md)
   - [(WIP) Key Generation](./cmz13/keygen.md)
   - [(WIP) Issuance](./cmz13/issuance.md)
-  - [(TODO) Verification](./cmz13/verification.md)
+  - [(WIP) Presentation](./cmz13/presentation.md)
 - [Extensions to CMZ13](./extensions.md)
   - [Chaining Proofs](./extensions/chain.md)
   - [Nullifiers](./extensions/nullifiers.md)
