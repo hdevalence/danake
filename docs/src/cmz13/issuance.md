@@ -29,8 +29,8 @@ Issuance is an online protocol with the following steps.
        \\)
        and computes 
        \\(
-       (E\_{i,0}, E\_{i,1}) \gets \operatorname{Enc}\_D(m\_i B)
-       = (r\_i B, m\_i B + r\_i D)
+       \operatorname{Enc}\_D(m\_i B) \gets
+       (r\_i B, m\_i B + r\_i D)
        \\).[^1]
     
     3. The client proves that the encryptions were well-formed:
@@ -39,15 +39,15 @@ Issuance is an online protocol with the following steps.
        \pi &\gets \operatorname{PK}\\{ \\\\
            &\mathtt{CorrectElGamal}, \\\\
            &(d, (r\_i, m\_i)\_{i \in \mathcal H}), \\\\
-           &(D, (E\_{i,0}, E\_{i,1})\_{i \in \mathcal H}), \\\\
+           &(D, (\operatorname{Enc}\_D(m\_i B))\_{i \in \mathcal H}), \\\\
            &(B) \\; : \\\\
-           &(E\_{i,0}, E\_{i,1}) = (r\_i B, m\_i B + r\_i D) \\; \forall i \in \mathcal H \\\\
+           &\operatorname{Enc}\_D(m\_i B) = (r\_i B, m\_i B + r\_i D) \\; \forall i \in \mathcal H \\\\
        \\}
        \end{aligned}
        \\]
     
     4. The client sends \\(D\\), \\((m\_i)\_{i \in \mathcal H}\\), 
-       \\((E\_{i,0}, E\_{i,1})\_{i \in \mathcal H}\\) and \\(\pi\\) to the server.
+       \\((\operatorname{Enc}\_D(m\_i B))\_{i \in \mathcal H}\\) and \\(\pi\\) to the server.
     
 2. **Issuer**.  The issuer verifies the client's proof and optionally
    performs other policy checks related to issuance.  Now 
@@ -116,8 +116,8 @@ Issuance is an online protocol with the following steps.
              \operatorname{Enc}\_D(Q),
              \mathbf T
            ), \\\\
-           &(\operatorname{Com}(x\_0), \mathbf X, B, \widetilde B) \\; : \\\\
-           & \operatorname{Com}(x\_0) = x\_0 B + \widetilde x\_0 \widetilde B,  \\\\
+           &(\mathbf X, B, \widetilde B) \\; : \\\\
+           & X\_0 = x\_0 B + \widetilde x\_0 \widetilde B,  \\\\
            & X\_i = x\_i \widetilde B \quad i = 1, \ldots, n, \\\\
            & P = bB, \\\\
            & T\_i = bX\_i, T\_i = t\_i \widetilde B \quad \forall i \in \mathcal H, \\\\
@@ -128,7 +128,7 @@ Issuance is an online protocol with the following steps.
                x\_0 + \sum\_{i \not\in \mathcal H} x\_i m\_i
                \Big) P + rD
            \Big) + 
-           \sum\_{i \in \mathcal H} \operatorname{Enc}\_D(m\_i B)
+           \sum\_{i \in \mathcal H} t\_i \operatorname{Enc}\_D(m\_i B)
              \\\\
        \\}
        \end{aligned}

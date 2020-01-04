@@ -21,15 +21,15 @@ as all other clients, preventing key partitioning attacks.
   \\(
   \widetilde x\_0 \xleftarrow{\\$} \mathbb F\_p
   \\),
-  then form the Pedersen commitment
+  then compute
   \\(
-  \operatorname{Com}(x\_0) = x\_0 B + \widetilde x\_0 \widetilde B
+  X\_0 = x\_0 B + \widetilde x\_0 \widetilde B
   \\)
-  and compute
+  and
   \\(
   X\_i = x\_i \widetilde B
   \\) for \\( i = 1, \ldots, n\\).
 
-  The *issuance secrets* are \\((\mathbf x, \widetilde x_0)\\) and the *issuance parameters* are \\((\mathbf X, \operatorname{Com}(x\_0))\\).
+  The *issuance secrets* are \\((\mathbf x, \widetilde x_0)\\) and the *issuance parameters* are \\(\mathbf X\\).
   
 FIXME: rewrite to make pedersen commitment structure more clear?

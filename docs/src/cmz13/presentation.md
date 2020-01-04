@@ -11,8 +11,8 @@ hidden or revealed between issuance and presentation.
 1. **Client**.  Given attributes \\(\mathbf m\\) and a previously issued tag 
     \\(P\_0, Q\_0\\), the client proceeds as follows.
     1.  The client re-randomizes the tag by choosing
-        \\(r \xleftarrow{\\$} \mathbb F\_p\\) and computing
-        \\((P, Q) \gets (r P\_0, r Q\_0)\\).
+        \\(t \xleftarrow{\\$} \mathbb F\_p\\) and computing
+        \\((P, Q) \gets (t P\_0, t Q\_0)\\).
     2.  The client commits to the hidden attributes by choosing
         \\(
         \widetilde m\_i \xleftarrow{\\$} \mathbb F\_p
@@ -35,7 +35,7 @@ hidden or revealed between issuance and presentation.
         \\).
     3.  The client uses the issuance parameters to compute a correction term
         \\(
-            V \gets \sum\_{i \in \mathcal H} \widetilde m\_i - rB
+            V \gets \sum\_{i \in \mathcal H} \widetilde m\_i X\_i - rB
         \\).
     4.  The client proves that the commitments and the correction term were computed correctly:
        \\[
