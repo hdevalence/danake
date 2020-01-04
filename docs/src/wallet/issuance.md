@@ -91,12 +91,12 @@
                 T\_2
             ), \\\\
             &(\mathbf X, B, \widetilde B) \\; : \\\\
-            & X\_0 = x\_0 B + \widetilde x\_0 \widetilde B,  \\\\
-            & X\_1 = x\_1 \widetilde B, \\\\
-            & X\_2 = x\_2 \widetilde B, \\\\
+            & X\_0 = x\_0 B + \widetilde x\_0 \widetilde B,  \\;
+              X\_1 = x\_1 \widetilde B, \\;
+              X\_2 = x\_2 \widetilde B, \\\\
             & P = bB, \\\\
-            & T\_2 = bX\_2, \\\\
-            & T\_2 = t\_2 \widetilde B, \\\\
+            & T\_2 = bX\_2, \\;
+              T\_2 = t\_2 \widetilde B, \\\\
             & \operatorname{Enc}\_D(Q) = 
                 (rB, x\_0 P + x\_1 (wP) + rD) + t\_2 \operatorname{Enc}\_D(nB) \\\\
         \\}.
