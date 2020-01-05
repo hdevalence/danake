@@ -97,6 +97,7 @@ nullifier.
         \\(\operatorname{Enc}(n'B)\\),
         \\(\operatorname{Enc}(wB)\\),
         \\(\operatorname{Com}(w)\\),
+        \\(P\\),
         \\(C\_Q\\),
         and \\(\pi\\) 
         to the issuer.

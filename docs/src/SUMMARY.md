@@ -17,7 +17,7 @@
   - [(TODO) Key Generation](./wallet/keygen.md)
   - [Issuance](./wallet/issuance.md)
   - [Rollover](./wallet/rollover.md)
-  - [(TODO) Topup](./wallet/topup.md)
+  - [Topup](./wallet/topup.md)
 - [(TODO) Token Credentials](./token.md)
   - [(TODO) Key Generation](./token/keygen.md)
   - [(TODO) Purchase](./token/purchase.md)
