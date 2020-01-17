@@ -27,7 +27,7 @@ impl EpochParameters {
     pub fn epoch_at(&self, time: DateTime<Utc>) -> Epoch {
         Epoch {
             index: time.timestamp() / (self.0 as i64),
-            params: self.clone(), 
+            params: self.clone(),
         }
     }
 }

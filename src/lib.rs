@@ -1,7 +1,14 @@
+#[macro_use]
+extern crate zkp;
 
 mod epoch;
 
 pub use epoch::*;
+
+pub mod wallet;
+
+mod tag;
+pub(crate) use tag::Tag;
 
 #[cfg(test)]
 mod tests {
