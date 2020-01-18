@@ -10,9 +10,8 @@ pub struct Wallet {
     tag: Tag,
 }
 
-mod issuance;
 mod keys;
-mod proofs;
+pub use keys::{Parameters, Secrets};
 
-pub use issuance::{AwaitingIssuance, IssuanceRequest, IssuanceResponse};
-pub use keys::{IssuanceParameters, IssuanceSecret};
+/// Issuance protocol states and messages.
+pub mod issuance;

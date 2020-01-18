@@ -14,7 +14,7 @@ use crate::Epoch;
 /// preventing key partitioning attacks.
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 #[allow(non_snake_case)]
-pub struct IssuanceParameters {
+pub struct Parameters {
     pub(super) X_0: RistrettoPoint,
     pub(super) X_1: RistrettoPoint,
     pub(super) X_2: RistrettoPoint,
@@ -34,15 +34,15 @@ pub(super) struct Inner {
 ///
 /// Held by the issuer and used to issue and verify credentials.
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
-pub struct IssuanceSecret {
+pub struct Secrets {
     pub(super) inner: Inner,
-    pub(super) cached_params: IssuanceParameters,
+    pub(super) cached_params: Parameters,
 }
 
 impl Inner {
-    fn parameters(&self) -> IssuanceParameters {
+    fn parameters(&self) -> Parameters {
         let pg = PedersenGens::default();
-        IssuanceParameters {
+        Parameters {
             X_0: pg.commit(self.x_0, self.x_0_blinding),
             X_1: &pg.B_blinding * &self.x_1,
             X_2: &pg.B_blinding * &self.x_2,
@@ -51,8 +51,8 @@ impl Inner {
     }
 }
 
-impl IssuanceSecret {
-    pub fn new<R: RngCore + CryptoRng>(epoch: Epoch, mut rng: R) -> IssuanceSecret {
+impl Secrets {
+    pub fn new<R: RngCore + CryptoRng>(epoch: Epoch, mut rng: R) -> Secrets {
         // XXX expand from a seed?
         let inner = Inner {
             epoch,
@@ -61,15 +61,15 @@ impl IssuanceSecret {
             x_2: Scalar::random(&mut rng),
             x_0_blinding: Scalar::random(&mut rng),
         };
-        IssuanceSecret {
+        Secrets {
             inner,
             cached_params: inner.parameters(),
         }
     }
 }
 
-impl<'a> From<&'a IssuanceSecret> for IssuanceParameters {
-    fn from(secret: &'a IssuanceSecret) -> IssuanceParameters {
+impl<'a> From<&'a Secrets> for Parameters {
+    fn from(secret: &'a Secrets) -> Parameters {
         secret.cached_params.clone()
     }
 }

@@ -8,7 +8,7 @@ use rand_core::{CryptoRng, RngCore};
 
 use crate::{Epoch, Tag};
 
-use super::keys::{IssuanceParameters, IssuanceSecret};
+use super::keys::{Parameters, Secrets};
 use super::Wallet;
 
 mod proofs {
@@ -45,7 +45,7 @@ mod proofs {
 /// A request for issuance of a wallet credential.
 #[derive(Clone)]
 #[allow(non_snake_case)]
-pub struct IssuanceRequest {
+pub struct Request {
     w: u64,
     epoch: Epoch,
     D: CompressedRistretto,
@@ -55,8 +55,8 @@ pub struct IssuanceRequest {
 
 /// State held by the client while awaiting an issuance response.
 #[allow(non_snake_case)]
-pub struct AwaitingIssuance {
-    parameters: IssuanceParameters,
+pub struct AwaitingResponse {
+    parameters: Parameters,
     transcript: Transcript,
     w: u64,
     n: Scalar,
@@ -72,10 +72,10 @@ impl Wallet {
     #[allow(non_snake_case)]
     pub fn request_issuance<R: RngCore + CryptoRng>(
         w: u64,
-        parameters: &IssuanceParameters,
+        parameters: &Parameters,
         mut transcript: Transcript,
         mut rng: R,
-    ) -> (AwaitingIssuance, IssuanceRequest) {
+    ) -> (AwaitingResponse, Request) {
         use curve25519_dalek::constants::RISTRETTO_BASEPOINT_POINT as B;
         use curve25519_dalek::constants::RISTRETTO_BASEPOINT_TABLE as B_TABLE;
 
@@ -103,7 +103,7 @@ impl Wallet {
         );
 
         (
-            AwaitingIssuance {
+            AwaitingResponse {
                 // XXX avoid this clone
                 parameters: parameters.clone(),
                 transcript,
@@ -113,7 +113,7 @@ impl Wallet {
                 D,
                 Enc_nB: (points.Enc_nB_0, points.Enc_nB_1),
             },
-            IssuanceRequest {
+            Request {
                 w,
                 epoch: parameters.epoch,
                 D: points.D,
@@ -127,14 +127,14 @@ impl Wallet {
 /// A response to a wallet issuance request.
 #[derive(Clone)]
 #[allow(non_snake_case)]
-pub struct IssuanceResponse {
+pub struct Response {
     P: CompressedRistretto,
     Enc_Q: (CompressedRistretto, CompressedRistretto),
     T_2: CompressedRistretto,
     proof: proofs::issuer::CompactProof,
 }
 
-impl IssuanceSecret {
+impl Secrets {
     /// Issues a wallet credential in response to an issuance request.
     ///
     /// This function is solely responsible for the issuance itself and not for
@@ -144,10 +144,10 @@ impl IssuanceSecret {
     #[allow(non_snake_case)]
     pub fn issue<R: RngCore + CryptoRng>(
         &self,
-        request: IssuanceRequest,
+        request: Request,
         mut transcript: Transcript,
         mut rng: R,
-    ) -> Result<IssuanceResponse, &'static str> {
+    ) -> Result<Response, &'static str> {
         // XXX extract constants
         use curve25519_dalek::constants::{
             RISTRETTO_BASEPOINT_COMPRESSED as B_COMPRESSED, RISTRETTO_BASEPOINT_POINT as B,
@@ -233,7 +233,7 @@ impl IssuanceSecret {
             },
         );
 
-        Ok(IssuanceResponse {
+        Ok(Response {
             P: points.P,
             T_2: points.T_2_a,
             Enc_Q: (points.Enc_Q_0, points.Enc_Q_1),
@@ -242,10 +242,10 @@ impl IssuanceSecret {
     }
 }
 
-impl AwaitingIssuance {
+impl AwaitingResponse {
     /// Verify an issuance response and obtain a wallet credential.
     #[allow(non_snake_case)]
-    pub fn verify_response(mut self, response: IssuanceResponse) -> Result<Wallet, &'static str> {
+    pub fn verify_response(mut self, response: Response) -> Result<Wallet, &'static str> {
         use proofs::issuer::*;
 
         let pg = bulletproofs::PedersenGens::default();
