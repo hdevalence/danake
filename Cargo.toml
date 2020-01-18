@@ -16,7 +16,7 @@ curve25519-dalek = "2"
 merlin = "2"
 bincode = "1"
 serde = { version = "1.0", features = ["derive"] }
-bulletproofs = { git = "https://github.com/dalek-cryptography/bulletproofs", branch = "thiserror" }
+bulletproofs = "2"
 
 [dev-dependencies]
 criterion = "0.3"
