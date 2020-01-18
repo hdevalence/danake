@@ -21,7 +21,7 @@ mod proofs {
         :
         D = (d * B),
         Enc_nB_0 = (r * B),
-        Enc_nB_1 = (n * D + r * B)
+        Enc_nB_1 = (n * B + r * D)
     }
 
     define_proof! {
@@ -134,17 +134,17 @@ pub struct IssuanceResponse {
 
 impl IssuanceSecret {
     /// Issues a wallet credential in response to an issuance request.
-    /// 
+    ///
     /// This function is solely responsible for the issuance itself and not for
     /// application policy (e.g., checking that the requested amount is valid).
-    /// 
+    ///
     /// The response should be returned to the client, who can process it.
     #[allow(non_snake_case)]
     pub fn issue<R: RngCore + CryptoRng>(
         &self,
+        request: IssuanceRequest,
         mut transcript: Transcript,
         mut rng: R,
-        request: IssuanceRequest,
     ) -> Result<IssuanceResponse, &'static str> {
         // XXX extract constants
         use curve25519_dalek::constants::{

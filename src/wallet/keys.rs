@@ -8,7 +8,7 @@ use rand_core::{CryptoRng, RngCore};
 use crate::Epoch;
 
 /// Public parameters for a wallet issuer.
-/// 
+///
 /// These are used by the client to prepare presentation proofs and to ensure
 /// that the client is using the same parameters as all otheer clients,
 /// preventing key partitioning attacks.
@@ -31,7 +31,7 @@ pub(super) struct Inner {
 }
 
 /// Secret key material for a wallet issuer.
-/// 
+///
 /// Held by the issuer and used to issue and verify credentials.
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 pub struct IssuanceSecret {
@@ -65,5 +65,11 @@ impl IssuanceSecret {
             inner,
             cached_params: inner.parameters(),
         }
+    }
+}
+
+impl<'a> From<&'a IssuanceSecret> for IssuanceParameters {
+    fn from(secret: &'a IssuanceSecret) -> IssuanceParameters {
+        secret.cached_params.clone()
     }
 }
