@@ -43,6 +43,7 @@ mod proofs {
 }
 
 /// A request for issuance of a wallet credential.
+#[derive(Clone)]
 #[allow(non_snake_case)]
 pub struct IssuanceRequest {
     w: u64,
@@ -124,6 +125,7 @@ impl Wallet {
 }
 
 /// A response to a wallet issuance request.
+#[derive(Clone)]
 #[allow(non_snake_case)]
 pub struct IssuanceResponse {
     P: CompressedRistretto,
