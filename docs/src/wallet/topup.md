@@ -90,6 +90,7 @@ issuance of a new credential with balance \\(w' = w + c\\). The client:
             \operatorname{Com}(w')
         ), \\\\
         &(B, \widetilde B, \mathbf X) \\; : \\\\
+        &D = d B \\\\
         &\operatorname{Enc}\_D(n' B) = (r\_n B, n' B + r\_n D) \\\\
         &\operatorname{Enc}\_D(w' B) = (r\_w B, w' B + r\_w D) \\\\
         &\operatorname{Com}(w) = w P + \widetilde w \widetilde B \\\\
@@ -185,8 +186,8 @@ issuance of a new credential with balance \\(w' = w + c\\). The client:
         & T\_1 = bX\_1', \\; T\_1 = t\_1 \widetilde B, \\\\
         & T\_2 = bX\_2', \\; T\_2 = t\_2 \widetilde B, \\\\
         & \operatorname{Enc}\_D(Q) =
-            (rB, x\_0' P + rD) + 
-            t\_1 \operatorname{Enc}\_D(wB) +
+            (rB, x\_0 P + rD) + 
+            t\_1 \operatorname{Enc}\_D(w'B) +
             t\_2 \operatorname{Enc}\_D(n'B) \\\\
     \\}.
     \end{aligned}

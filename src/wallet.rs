@@ -15,3 +15,6 @@ pub use keys::{Parameters, Secrets};
 
 /// Issuance protocol states and messages.
 pub mod issuance;
+
+/// Topup protocol states and messages.
+pub mod topup;
