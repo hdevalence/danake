@@ -6,13 +6,13 @@ use danake;
 
 #[test]
 fn wallet_issuance_flow() {
-    use danake::{wallet::*, Epoch, EpochParameters};
+    use danake::{wallet::*, EpochParameters};
 
     let epoch_params = EpochParameters::from(std::time::Duration::from_secs(86400));
     let epoch = epoch_params.epoch_at(chrono::Utc::now());
 
-    let secret = IssuanceSecret::new(epoch, rand::thread_rng());
-    let params = IssuanceParameters::from(&secret);
+    let secret = Secrets::new(epoch, rand::thread_rng());
+    let params = Parameters::from(&secret);
 
     let (client_state, request) = Wallet::request_issuance(
         100_000,
@@ -29,7 +29,7 @@ fn wallet_issuance_flow() {
         )
         .expect("issuance should succeed");
 
-    let wallet = client_state
+    let _wallet = client_state
         .verify_response(response)
         .expect("response should verify");
 }
