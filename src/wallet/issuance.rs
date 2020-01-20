@@ -6,7 +6,7 @@ use curve25519_dalek::{
 use merlin::Transcript;
 use rand_core::{CryptoRng, RngCore};
 
-use crate::{Epoch, Tag};
+use crate::{constants, Epoch, Tag};
 
 use super::keys::{Parameters, Secrets};
 use super::Wallet;
@@ -76,15 +76,15 @@ impl Wallet {
         mut transcript: Transcript,
         mut rng: R,
     ) -> (AwaitingResponse, Request) {
-        use curve25519_dalek::constants::RISTRETTO_BASEPOINT_POINT as B;
-        use curve25519_dalek::constants::RISTRETTO_BASEPOINT_TABLE as B_TABLE;
+        let B: &RistrettoPoint = &constants::B;
+        let B_blinding: &RistrettoPoint = &constants::B_BLINDING;
 
         let n = Scalar::random(&mut rng);
         let d = Scalar::random(&mut rng);
         let r = Scalar::random(&mut rng);
 
-        let D = &d * &B_TABLE;
-        let Enc_nB = (&B_TABLE * &r, &B_TABLE * &(n + r * d));
+        let D = &d * B;
+        let Enc_nB = (B * r, B * (n + r * d));
 
         use proofs::client::*;
 
@@ -98,7 +98,7 @@ impl Wallet {
                 D: &D,
                 Enc_nB_0: &Enc_nB.0,
                 Enc_nB_1: &Enc_nB.1,
-                B: &B,
+                B: B,
             },
         );
 
@@ -148,12 +148,8 @@ impl Secrets {
         mut transcript: Transcript,
         mut rng: R,
     ) -> Result<Response, &'static str> {
-        // XXX extract constants
-        use curve25519_dalek::constants::{
-            RISTRETTO_BASEPOINT_COMPRESSED as B_COMPRESSED, RISTRETTO_BASEPOINT_POINT as B,
-            RISTRETTO_BASEPOINT_TABLE as B_TABLE,
-        };
-        let pg = bulletproofs::PedersenGens::default();
+        let B: &RistrettoPoint = &constants::B;
+
         let sk = &self.inner;
         let params = &self.cached_params;
 
@@ -168,7 +164,7 @@ impl Secrets {
                 D: &request.D,
                 Enc_nB_0: &request.Enc_nB.0,
                 Enc_nB_1: &request.Enc_nB.1,
-                B: &B_COMPRESSED,
+                B: &constants::B_COMPRESSED,
             },
         )
         .map_err(|_| "client proof failed to verify")?;
@@ -190,11 +186,11 @@ impl Secrets {
         );
         let D = request.D.decompress().ok_or("failed to decompress")?;
         let w = Scalar::from(request.w);
-        let P = &B_TABLE * &b;
-        let wP = &B_TABLE * &(b * w);
+        let P = B * &b;
+        let wP = B * &(b * w);
 
         let Enc_Q = (
-            RistrettoPoint::multiscalar_mul(&[r, b * sk.x_2], &[B, Enc_nB.0]),
+            RistrettoPoint::multiscalar_mul(&[r, b * sk.x_2], &[*B, Enc_nB.0]),
             RistrettoPoint::multiscalar_mul(
                 &[sk.x_0 + sk.x_1 * w, b * sk.x_2, r],
                 &[P, Enc_nB.1, D],
@@ -228,8 +224,8 @@ impl Secrets {
                 X_0: &params.X_0,
                 X_1: &params.X_1,
                 X_2: &params.X_2,
-                B: &pg.B,
-                B_blinding: &pg.B_blinding,
+                B: B,
+                B_blinding: &constants::B_BLINDING,
             },
         );
 
@@ -246,14 +242,11 @@ impl AwaitingResponse {
     /// Verify an issuance response and obtain a wallet credential.
     #[allow(non_snake_case)]
     pub fn verify_response(mut self, response: Response) -> Result<Wallet, &'static str> {
-        use proofs::issuer::*;
-
-        let pg = bulletproofs::PedersenGens::default();
-
         // XXX-zkp: need to be able to pass either compressed or decompressed points or both
         let P = response.P.decompress().ok_or("failed to decompress")?;
         let wP = P * Scalar::from(self.w);
 
+        use proofs::issuer::*;
         verify_compact(
             &response.proof,
             &mut self.transcript,
@@ -270,8 +263,8 @@ impl AwaitingResponse {
                 X_0: &self.parameters.X_0.compress(),
                 X_1: &self.parameters.X_1.compress(),
                 X_2: &self.parameters.X_2.compress(),
-                B: &pg.B.compress(),
-                B_blinding: &pg.B_blinding.compress(),
+                B: &constants::B_COMPRESSED,
+                B_blinding: &constants::B_BLINDING_COMPRESSED,
             },
         )
         .map_err(|_| "issuer proof failed to verify")?;

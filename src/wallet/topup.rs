@@ -6,7 +6,7 @@ use curve25519_dalek::{
 use merlin::Transcript;
 use rand_core::{CryptoRng, RngCore};
 
-use crate::{Epoch, Tag};
+use crate::{constants, Epoch, Tag};
 
 use super::keys::{Parameters, Secrets};
 use super::Wallet;
@@ -133,33 +133,34 @@ impl Wallet {
         mut transcript: Transcript,
         mut rng: R,
     ) -> Result<(AwaitingResponse, Request), &'static str> {
+        let B: &RistrettoPoint = &constants::B;
+
         if self.epoch != parameters.epoch {
             return Err("wrong epoch");
         }
-        let pg = bulletproofs::PedersenGens::default();
 
         let tag = self.tag.randomize(&mut rng);
 
         let w = Scalar::from(self.w);
         let w_prime = Scalar::from(self.w + c);
         let w_blinding = Scalar::random(&mut rng);
-        let Com_w = pg.commit(w, w_blinding);
-        let Com_w_prime = pg.commit(w_prime, w_blinding);
+        let Com_w = constants::PG.commit(w, w_blinding);
+        let Com_w_prime = constants::PG.commit(w_prime, w_blinding);
 
         let r_Q = Scalar::random(&mut rng);
-        let C_Q = tag.Q - r_Q * pg.B;
+        let C_Q = tag.Q - r_Q * B;
 
-        let V = w_blinding * parameters.X_1 - r_Q * pg.B;
+        let V = w_blinding * parameters.X_1 - r_Q * B;
 
         let n_prime = Scalar::random(&mut rng);
         let d = Scalar::random(&mut rng);
-        let D = d * pg.B;
+        let D = d * B;
 
         let r_w = Scalar::random(&mut rng);
-        let Enc_w_prime_B = (r_w * pg.B, (w_prime + r_w * d) * pg.B);
+        let Enc_w_prime_B = (r_w * B, (w_prime + r_w * d) * B);
 
         let r_n = Scalar::random(&mut rng);
-        let Enc_n_prime_B = (r_n * pg.B, (n_prime + r_n * d) * pg.B);
+        let Enc_n_prime_B = (r_n * B, (n_prime + r_n * d) * B);
 
         use proofs::client::*;
 
@@ -183,20 +184,21 @@ impl Wallet {
                 V: &V,
                 Com_w: &Com_w,
                 Com_w_prime: &Com_w_prime,
-                B: &pg.B,
-                B_blinding: &pg.B_blinding,
+                B: B,
+                B_blinding: &constants::B_BLINDING,
                 X_1: &parameters.X_1,
             },
         );
 
-        // XXX extract this into constants
-        let bp_gens = bulletproofs::BulletproofGens::new(64, 1);
+        // The commitment to the updated balance w_prime has bases P,
+        // B_blinding, so we construct custom pedersen commitment generators to
+        // pass to the bulletproofs library.
         let pc_gens = bulletproofs::PedersenGens {
             B: tag.P,
-            B_blinding: pg.B,
+            B_blinding: constants::PG.B_blinding,
         };
         let (range_proof, _) = bulletproofs::RangeProof::prove_single(
-            &bp_gens,
+            &constants::BP_GENS,
             &pc_gens,
             &mut transcript,
             self.w + c,
