@@ -12,6 +12,9 @@ each presentation of a wallet or token is coupled with a (blinded)
 issuance request for a new wallet or token with an updated balance and a
 new nullifier.
 
+These credentials are instantiated with CMZ13 (AMACs) credentials, described
+[in a later section of the document](./cmz13.md).
+
 While the simplest mechanism would be for the client to spend credits from
 the wallet credential directly, using intermediate tokens has a number
 of advantages:

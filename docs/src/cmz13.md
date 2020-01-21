@@ -34,4 +34,6 @@ symmetric-style rather than public-key-style cryptography.
 This section reviews the CMZ'13 construction, describing key generation,
 blinded issuance, and credential presentation.
 
+TODO: rewrite this section to make it more clear.
+
 [amacs]: https://eprint.iacr.org/2013/516

@@ -1,6 +1,8 @@
 # Summary
 
 [Danake](./danake.md)
+- [Design Goals](./design_goals.md)
+- [Danake Overview](./overview.md)
 - [Notation](./notation.md)
 - [(WIP) CMZ13 Credentials](./cmz13.md)
   - [MAC-GGM](./cmz13/macggm.md)
@@ -11,8 +13,6 @@
   - [Chaining Proofs](./extensions/chain.md)
   - [Nullifiers](./extensions/nullifiers.md)
   - [Credential Epochs](./extensions/epochs.md)
-- [Design Goals](./design_goals.md)
-- [Danake Overview](./overview.md)
 - [(WIP) Wallet Credentials](./wallet.md)
   - [(TODO) Key Generation](./wallet/keygen.md)
   - [Issuance](./wallet/issuance.md)
