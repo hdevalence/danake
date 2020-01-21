@@ -37,7 +37,7 @@ service provider track per-user usage statistics.
 
 Finally, because resource controls that cost more than the resources
 they are intended to control are impractical, Danake is intended to be
-extremely fast.
+fast enough to replace non-anonymous application authentication logic.
 
 [^1]: For instance, credits could be bound to a specific user-id and the
 client could prove consistency between a different user credential and
