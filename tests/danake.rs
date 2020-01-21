@@ -15,7 +15,7 @@ fn wallet_issuance_and_topup() {
     let params = Parameters::from(&secret);
 
     let (client_state, request) = Wallet::request_issuance(
-        100_000,
+        1_000,
         &params,
         Transcript::new(b"wallet issuance test"),
         rand::thread_rng(),
@@ -35,7 +35,7 @@ fn wallet_issuance_and_topup() {
 
     let (client_state, request) = wallet
         .request_topup(
-            20_000,
+            2_000,
             &params,
             Transcript::new(b"wallet topup test"),
             rand::thread_rng(),

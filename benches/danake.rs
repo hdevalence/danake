@@ -17,7 +17,7 @@ pub fn wallet_topup_response(c: &mut Criterion) {
     let params = Parameters::from(&secret);
 
     let (client_state, request) = Wallet::request_issuance(
-        100_000,
+        1_000,
         &params,
         Transcript::new(b"wallet issuance test"),
         rand::thread_rng(),
@@ -37,7 +37,7 @@ pub fn wallet_topup_response(c: &mut Criterion) {
 
     let (_client_state, request) = wallet
         .request_topup(
-            20_000,
+            2_000,
             &params,
             Transcript::new(b"wallet topup test"),
             rand::thread_rng(),
