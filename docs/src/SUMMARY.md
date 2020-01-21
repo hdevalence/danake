@@ -23,7 +23,7 @@
   - [(TODO) Purchase](./token/purchase.md)
   - [(TODO) Rollover](./token/rollover.md)
   - [(TODO) Spend](./token/spend.md)
-- [(TODO) Implementation](./implementation.md)
+- [(WIP) Implementation](./implementation.md)
 - [(TODO) Performance](./performance.md)
 - [(WIP) Unresolved Questions](./questions.md)
 - [(TODO) Related Work](./related_work.md)
