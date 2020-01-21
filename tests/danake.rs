@@ -5,7 +5,7 @@ use rand;
 use danake;
 
 #[test]
-fn wallet_issuance_flow() {
+fn wallet_issuance_and_topup() {
     use danake::{wallet::*, EpochParameters};
 
     let epoch_params = EpochParameters::from(std::time::Duration::from_secs(86400));
@@ -29,7 +29,28 @@ fn wallet_issuance_flow() {
         )
         .expect("issuance should succeed");
 
-    let _wallet = client_state
+    let wallet = client_state
+        .verify_response(response)
+        .expect("response should verify");
+
+    let (client_state, request) = wallet
+        .request_topup(
+            20_000,
+            &params,
+            Transcript::new(b"wallet topup test"),
+            rand::thread_rng(),
+        )
+        .expect("epoch is correct");
+
+    let response = secret
+        .topup(
+            request,
+            Transcript::new(b"wallet topup test"),
+            rand::thread_rng(),
+        )
+        .expect("topup should succeed");
+
+    let _wallet2 = client_state
         .verify_response(response)
         .expect("response should verify");
 }

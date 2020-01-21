@@ -77,7 +77,6 @@ impl Wallet {
         mut rng: R,
     ) -> (AwaitingResponse, Request) {
         let B: &RistrettoPoint = &constants::B;
-        let B_blinding: &RistrettoPoint = &constants::B_BLINDING;
 
         let n = Scalar::random(&mut rng);
         let d = Scalar::random(&mut rng);
@@ -173,16 +172,8 @@ impl Secrets {
         let r = Scalar::random(&mut rng);
 
         let Enc_nB = (
-            request
-                .Enc_nB
-                .0
-                .decompress()
-                .ok_or("failed to decompress")?,
-            request
-                .Enc_nB
-                .1
-                .decompress()
-                .ok_or("failed to decompress")?,
+            request.Enc_nB.0.decompress().ok_or("bad point")?,
+            request.Enc_nB.1.decompress().ok_or("bad point")?,
         );
         let D = request.D.decompress().ok_or("failed to decompress")?;
         let w = Scalar::from(request.w);
@@ -270,16 +261,8 @@ impl AwaitingResponse {
         .map_err(|_| "issuer proof failed to verify")?;
 
         let Enc_Q = (
-            response
-                .Enc_Q
-                .0
-                .decompress()
-                .ok_or("failed to decompress")?,
-            response
-                .Enc_Q
-                .1
-                .decompress()
-                .ok_or("failed to decompress")?,
+            response.Enc_Q.0.decompress().ok_or("bad point")?,
+            response.Enc_Q.1.decompress().ok_or("bad point")?,
         );
 
         let Q = Enc_Q.1 - self.d * Enc_Q.0;
