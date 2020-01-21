@@ -24,7 +24,7 @@
   - [(TODO) Rollover](./token/rollover.md)
   - [(TODO) Spend](./token/spend.md)
 - [(WIP) Implementation](./implementation.md)
-- [(TODO) Performance](./performance.md)
+- [(WIP) Performance](./performance.md)
 - [(WIP) Unresolved Questions](./questions.md)
 - [(TODO) Related Work](./related_work.md)
 - [(TODO) About](./about.md)
