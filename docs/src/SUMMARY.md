@@ -27,5 +27,5 @@
 - [(WIP) Performance](./performance.md)
 - [(WIP) Unresolved Questions](./questions.md)
 - [(TODO) Related Work](./related_work.md)
-- [(TODO) About](./about.md)
+- [About](./about.md)
   
