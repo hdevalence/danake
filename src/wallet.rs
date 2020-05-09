@@ -18,3 +18,6 @@ pub mod issuance;
 
 /// Topup protocol states and messages.
 pub mod topup;
+
+/// Rollover protocol states and messages.
+pub mod rollover;
