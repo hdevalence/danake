@@ -7,7 +7,7 @@ use rand_core::{CryptoRng, RngCore};
 
 use crate::Epoch;
 
-/// Public parameters for a wallet issuer.
+/// Public parameters for a wallet issuer for a particular epoch.
 ///
 /// These are used by the client to prepare presentation proofs and to ensure
 /// that the client is using the same parameters as all otheer clients,
