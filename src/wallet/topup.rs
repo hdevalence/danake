@@ -14,7 +14,7 @@ use super::Wallet;
 mod proofs {
     define_proof! {
         client,
-        "WalletTopup_Client",
+        "wallet::topup::client",
         (
             d,
             w,
@@ -54,7 +54,7 @@ mod proofs {
 
     define_proof! {
         issuer,
-        "WalletTopup_Issuer",
+        "wallet::topup::issuer",
         (
             b,
             r,

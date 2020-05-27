@@ -14,7 +14,7 @@ use super::Wallet;
 mod proofs {
     define_proof! {
         client,
-        "WalletIssuance_Client",
+        "wallet::issuance::client",
         (d, n, r),
         (D, Enc_nB_0, Enc_nB_1),
         (B)
@@ -26,7 +26,7 @@ mod proofs {
 
     define_proof! {
         issuer,
-        "WalletIssuance_Issuer",
+        "wallet::issuance::issuer",
         (b, r, x_0, x_1, x_2, x_0_blinding, t_2),
         (P, wP, D, Enc_nB_0, Enc_nB_1, Enc_Q_0, Enc_Q_1, T_2_a, T_2_b),
         (X_0, X_1, X_2, B, B_blinding)

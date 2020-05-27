@@ -14,7 +14,7 @@ use super::Wallet;
 mod proofs {
     define_proof! {
         client,
-        "WalletRollover_Client",
+        "wallet::rollover::client",
         (
             d,
             w,
@@ -51,7 +51,7 @@ mod proofs {
 
     define_proof! {
         issuer,
-        "WalletRollover_Issuer",
+        "wallet::rollover::issuer",
         (
             b,
             r,
