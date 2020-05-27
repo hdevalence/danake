@@ -71,8 +71,8 @@ fn wallet_issuance_topup_and_rollover() {
 
     let response = request
         .rollover(
-            secret,
-            new_secret,
+            &secret,
+            &new_secret,
             Transcript::new(b"wallet rollover test"),
             rand::thread_rng(),
             check_and_update_closure,

@@ -253,8 +253,8 @@ impl Request {
     #[allow(non_snake_case)]
     pub fn rollover<R: RngCore + CryptoRng>(
         &self,
-        old_secret: Secrets,
-        new_secret: Secrets,
+        old_secret: &Secrets,
+        new_secret: &Secrets,
         mut transcript: Transcript,
         mut rng: R,
         mut check_and_update_nullifier: impl FnMut([u8; 32]) -> bool,
