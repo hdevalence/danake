@@ -17,7 +17,7 @@ group](https://ristretto.group), as implemented in
 - [ ] Wallet functionality
   - [x] keygen
   - [x] issuance
-  - [ ] rollover
+  - [x] rollover
   - [x] topup
 - [ ] Token functionality
   - [ ] keygen

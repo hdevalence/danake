@@ -71,7 +71,7 @@ nullifier.
         \\[
         \begin{aligned}
         \pi &\gets \operatorname{PK}\\{ \\\\
-            &\mathtt{WalletRollover\\_Client}, \\\\
+            &\mathtt{wallet::rollover::client}, \\\\
             &(d, w, \widetilde w, n', r\_Q, r\_w, r\_n), \\\\
             &(
                 D, 
@@ -141,7 +141,7 @@ nullifier.
         \\[
         \begin{aligned}
         \pi &\gets \operatorname{PK}\\{ \\\\
-            &\mathtt{WalletRollover\\_Issuer}, \\\\
+            &\mathtt{wallet::rollover::issuer}, \\\\
             &(
                 b, 
                 r, 

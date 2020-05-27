@@ -78,7 +78,7 @@ issuance of a new credential with balance \\(w' = w + c\\). The client:
     \\[
     \begin{aligned}
     \pi &\gets \operatorname{PK}\\{ \\\\
-        &\mathtt{WalletTopup\\_Client}, \\\\
+        &\mathtt{wallet::topup::client}, \\\\
         &(d, w, w', \widetilde w, n', r\_Q, r\_w, r\_n), \\\\
         &(
             D, 
@@ -160,7 +160,7 @@ issuance of a new credential with balance \\(w' = w + c\\). The client:
     \\[
     \begin{aligned}
     \pi &\gets \operatorname{PK}\\{ \\\\
-        &\mathtt{WalletTopup\\_Issuer}, \\\\
+        &\mathtt{wallet::topup::issuer}, \\\\
         &(
             b, 
             r, 
