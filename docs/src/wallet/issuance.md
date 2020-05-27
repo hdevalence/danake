@@ -32,7 +32,7 @@
         \\[
         \begin{aligned}
         \pi &\gets \operatorname{PK}\\{ \\\\
-            &\mathtt{WalletIssuance\\_Client}, \\\\
+            &\mathtt{wallet::issuance::client}, \\\\
             &(d, n, r), \\\\
             &(D, \operatorname{Enc}\_D(n B)), \\\\
             &(B) \\; : \\\\
@@ -78,7 +78,7 @@
         \\[
         \begin{aligned}
         \pi &\gets \operatorname{PK}\\{ \\\\
-            &\mathtt{WalletIssuance\\_Issuer}, \\\\
+            &\mathtt{wallet::issuance::issuer}, \\\\
             &(
                 b, r, \mathbf x, \widetilde x\_0, t\_2
             ), \\\\
